@@ -1,6 +1,6 @@
 param([string]$OutputPath)
 
-$NetchDataURL="https://github.com/NetchX/NetchData/archive/refs/heads/master.zip"
+$NetchDataURL="https://github.com/fxzxmicah/NetchData/archive/refs/heads/master.zip"
 $NetchModeURL="https://github.com/NetchX/NetchMode/archive/refs/heads/master.zip"
 $NetchI18NURL="https://github.com/NetchX/NetchI18N/archive/refs/heads/master.zip"
 
