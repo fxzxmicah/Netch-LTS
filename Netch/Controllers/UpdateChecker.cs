@@ -13,14 +13,14 @@ namespace Netch.Controllers
 {
     public static class UpdateChecker
     {
-        public const string Owner = @"NetchX";
-        public const string Repo = @"Netch";
+        public const string Owner = @"fxzxmicah";
+        public const string Repo = @"Netch-LTS";
 
         public const string Name = @"Netch";
         public const string Copyright = @"Copyright © 2019 - 2021";
 
         public const string AssemblyVersion = @"1.8.3";
-        private const string Suffix = @"";
+        private const string Suffix = @"LTS-1.0.0";
 
         public static readonly string Version = $"{AssemblyVersion}{(string.IsNullOrEmpty(Suffix) ? "" : $"-{Suffix}")}";
 
