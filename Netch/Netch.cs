@@ -1,6 +1,7 @@
 ﻿using Netch.Controllers;
 using Netch.Forms;
 using Netch.Utils;
+using Netch.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vanara.PInvoke;
 using static Vanara.PInvoke.Kernel32;
 
 namespace Netch
@@ -16,17 +18,17 @@ namespace Netch
     {
         public static readonly SingleInstance.SingleInstance SingleInstance = new($"Global\\{nameof(Netch)}");
 
+        public static HWND ConsoleHwnd { get; private set; }
+
         /// <summary>
         ///     应用程序的主入口点
         /// </summary>
         [STAThread]
         public static void Main(string[] args)
         {
-#if DEBUG
-            AttachAllocConsole();
-#else
-            if (args.Contains(Constants.Parameter.Console))
-                AttachAllocConsole();
+            ConsoleHwnd = GetConsoleWindow();
+#if RELEASE
+            User32.ShowWindow(ConsoleHwnd, ShowWindowCommand.SW_HIDE);
 #endif
 
             if (args.Contains(Constants.Parameter.ForceUpdate))
@@ -38,7 +40,7 @@ namespace Netch
             Environment.SetEnvironmentVariable("PATH", $"{Environment.GetEnvironmentVariable("PATH")};{binPath}");
             AddDllDirectory(binPath);
 
-            Updater.Updater.CleanOld(Global.NetchDir);
+            Updater.CleanOld(Global.NetchDir);
 
             // 预创建目录
             var directories = new[] { "mode\\Custom", "data", "i18n", "logging" };
@@ -91,12 +93,6 @@ namespace Netch
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Global.MainForm);
-        }
-
-        private static void AttachAllocConsole()
-        {
-            if (!AttachConsole(ATTACH_PARENT_PROCESS))
-                AllocConsole();
         }
 
         public static void Application_OnException(object sender, ThreadExceptionEventArgs e)

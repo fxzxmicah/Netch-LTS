@@ -80,9 +80,7 @@ namespace Netch.Models
 
         public string OtherDNS { get; set; } = "tcp://1.1.1.1:53";
 
-        public ushort ListenPort { get; set; } = 53;
-
-        public string RulePath { get; set; } = "bin\\aiodns.conf";
+        public ushort ListenPort { get; set; } = 253;
     }
 
     public class RedirectorConfig
