@@ -21,7 +21,7 @@ namespace Netch.Controllers
         public const string Copyright = @"Copyright © 2019 - 2021";
 
         public const string AssemblyVersion = @"1.8.5";
-        private const string Suffix = @"LTSu01";
+        private const string Suffix = @"LTSu02";
 
         public static readonly string Version = $"{AssemblyVersion}{(string.IsNullOrEmpty(Suffix) ? "" : $"-{Suffix}")}";
 
