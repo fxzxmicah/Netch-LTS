@@ -13,8 +13,6 @@ namespace Netch.Utils
 {
     public static class ModeHelper
     {
-        public const string DisableModeDirectoryFileName = "disabled";
-
         public static string ModeDirectoryFullName => Path.Combine(Global.NetchDir, "mode");
 
         private static readonly FileSystemWatcher FileSystemWatcher;
@@ -76,10 +74,6 @@ namespace Netch.Utils
             {
                 foreach (var directory in Directory.GetDirectories(modeDirectory))
                     LoadModeDirectory(directory);
-
-                // skip Directory with a disabled file in
-                if (File.Exists(Path.Combine(modeDirectory, DisableModeDirectoryFileName)))
-                    return;
 
                 foreach (var file in Directory.GetFiles(modeDirectory).Where(f => f.EndsWith(".txt")))
                     try

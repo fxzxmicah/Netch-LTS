@@ -149,9 +149,6 @@ namespace Netch.Services
                 if (extendedKeepDirectories.Any(p => file.StartsWith(p)))
                     continue;
 
-                if (Path.GetFileName(file) is ModeHelper.DisableModeDirectoryFileName)
-                    continue;
-
                 filesToDelete.Add(file);
             }
 
